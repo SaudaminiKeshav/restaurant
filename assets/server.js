@@ -1,27 +1,50 @@
 // Dependencies
-// =============================================================
-var express = require("express");
-var path = require("path");
-// Sets up the Express App
-// =============================================================
-var app = express();
-var PORT = 3000;
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-// Star Wars Characters (DATA)
-// =============================================================
+class Customer {
+    constructor(name, phone, email, id) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.id = id;
+    }
+
+    getName() {
+        console.log("Name:", this.name);
+        return this.name;
+    }
+    getId() {
+        console.log("ID:", this.id);
+        return this.id;
+    }
+    getPhone() {
+        console.log("Phone number:", this.phone);
+        return this.phone;
+    }
+    getEmail() {
+        console.log("Email:", this.email);
+        return this.email;
+    }
+    getStatus() {
+        console.log("Status:", this.status);
+        return this.status;
+    }
+}
+
 var customers = [];
-var custName = document.querySelector("#name");
-var custPhone = document.querySelector("#phone-number");
-var custEmail = document.querySelector("#email");
-var custID = documet.querySelector("unique-id");
-document.querySelector("#submit").addEventListener("click", function(event){
+var custName = document.querySelector("#reserve-name");
+var custPhone = document.querySelector("#reserve-phone");
+var custEmail = document.querySelector("#reserve-email");
+var custStatus = document.querySelector("#reserve-status");
+var custID = document.querySelector("#reserve-id");
+
+document.querySelector("#reserve-submit").addEventListener("click", function(event){
     event.preventDefault();
     const customer = new Customer(custName.value, custPhone.value, custEmail.value, custID.value);
     customers.push(customer);
-    localStorage.setItem("customer data", customer);
+    console.log(customer)
+    localStorage.setItem("customer data", JSON.stringify(customer));
 });
+
+
 // app.get("/home", function(req, res) {
 //     res.sendFile(path.join(__dirname, "home.html"));
 //   });
